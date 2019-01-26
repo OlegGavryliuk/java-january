@@ -72,8 +72,6 @@ public class UserApiTests {
 
 
 
-
-
     /* DELETE */
     /* Проверка удаления юзера по ИД */
     @Test()
