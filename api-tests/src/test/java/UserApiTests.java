@@ -3,12 +3,14 @@ import com.exemple.model.UserCardCreate;
 import com.exemple.model.UserPayload;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
+import io.restassured.internal.path.json.mapping.JsonObjectDeserializer;
+import io.restassured.parsing.Parser;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import static org.hamcrest.Matchers.isEmptyString;
-import static org.hamcrest.Matchers.not;
+
+import static org.hamcrest.Matchers.*;
 
 public class UserApiTests {
 
@@ -17,13 +19,15 @@ public class UserApiTests {
         RestAssured.baseURI = "http://142.93.90.9/";
     }
 
+
+    /* POST */
+    /* Проверка регистрации нового юзера */
     @Test()
     void testCanRegisterUser(){
         UserPayload userPayload = new UserPayload()
                 .setUsername(RandomStringUtils.randomAlphanumeric(6))
                 .setPassword("12345")
                 .setEmail("user@gmail.com");
-
 
         RestAssured
                 .given().contentType(ContentType.JSON).log().all()
@@ -37,48 +41,50 @@ public class UserApiTests {
     }
 
 
+
+    /* GET */
+    /* Проверка существования юзера по ИД */
     @Test()
-    void testCanCreateNewCardUser(){
-        UserCardCreate userCardCreate = new UserCardCreate()
-                .setLongNum("8888888888888888")
-                .setExpires("12122023")
-                .setCcv("888")
-                .setUserID("5c48c0cfee11cb0001fa6644");
-
-
+    void testCanGetCustomer(){
+        RestAssured.registerParser("text/plain", Parser.JSON);
         RestAssured
-                .given().contentType(ContentType.JSON).log().all()
-                .body(userCardCreate)
                 .when()
-                .post("cards")
-                .then().log().all()
-                .assertThat()
+                .get("customers")
+                .then()
                 .statusCode(200)
-                .body("id", not(isEmptyString()));
-
+                .contentType(ContentType.TEXT)
+                .body("_embedded.customer.id",hasItems("5c48c0cfee11cb0001fa6644"));
     }
 
+    /* GET */
+    /* Проверка существования кредитной карты по ИД юзера */
     @Test()
-    void testCanCreateAdressUser(){
-        UserAdressCreate userAdressCreate = new UserAdressCreate()
-                .setStreet("Street")
-                .setNumber("55")
-                .setCountry("Country")
-                .setCity("City")
-                .setPostcode("000000")
-                .setUserID("5c48c0cfee11cb0001fa6644");
-
-
+    void testCanGetCards(){
+        RestAssured.registerParser("text/plain", Parser.JSON);
         RestAssured
-                .given().contentType(ContentType.JSON).log().all()
-                .body(userAdressCreate)
                 .when()
-                .post("address")
-                .then().log().all()
-                .assertThat()
+                .get("cards")
+                .then()
                 .statusCode(200)
-                .body("id", not(isEmptyString()));
+                .contentType(ContentType.TEXT)
+                .body("_embedded.card.id",hasItems("57a98d98e4b00679b4a830b4"));
     }
+
+
+
+
+
+    /* DELETE */
+    /* Проверка удаления юзера по ИД */
+    @Test()
+    void testCanDeleteUser(){
+        RestAssured
+                .when()
+                .delete("customers/5c4cad2cee11cb0001fa6652")
+                .then()
+                .statusCode(200);
+    }
+
 
 
 }
