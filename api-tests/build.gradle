@@ -6,12 +6,24 @@ ext{
 
 dependencies {
     compile "com.fasterxml.jackson.core:jackson-databind:$jacksonDatabindVersion"
-    testCompile "io.rest-assured:rest-assured:$restAssuredVersion"
-
+    compile "io.rest-assured:rest-assured:$restAssuredVersion"
     testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
+
+
 }
 
-//test {
-//    useJUnitPlatform()
-//}
+test {
+    useJUnitPlatform()
+
+    test.outputs.upToDateWhen{false}
+}
+
+allure {
+    version = '2.5'
+    aspectjweaver = true
+
+    useJUnit5 {
+        version = '2.7.0'
+    }
+}
