@@ -1,3 +1,4 @@
 rootProject.name = 'java-january'
 include 'api-tests'
+include 'ui-tests'
 

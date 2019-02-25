@@ -1,0 +1,24 @@
+ext {
+    testNgVersion = "6.13"
+    selenideVersion = "4.14.2"
+}
+
+dependencies {
+    compile "com.codeborne:selenide:$selenideVersion"
+    testCompile "org.testng:testng:$testNgVersion"
+}
+
+test {
+
+    useTestNG()
+
+    testLogging {
+        events "PASSED", "FAILED", "SKIPPED"
+        exceptionFormat = 'full'
+    }
+
+    test.outputs.upToDateWhen {false}
+
+}
+
+
