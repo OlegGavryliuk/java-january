@@ -1,0 +1,1 @@
+{"uuid":"882e3bb0-77a5-4b25-9a3b-26240de97c43","historyId":"c76d44bd440c9a56adf4c6348351a671","labels":[{"name":"suite","value":"com.example.tests.UserApiTests"},{"name":"package","value":"com.example.tests.UserApiTests"}],"name":"testCanGetCustomer()","status":"passed","stage":"finished","start":1550091479612,"stop":1550091481636}
