@@ -4,6 +4,7 @@ ext {
 }
 
 dependencies {
+    compile project (":api-tests")
     compile "com.codeborne:selenide:$selenideVersion"
     testCompile "org.testng:testng:$testNgVersion"
 }
