@@ -17,33 +17,32 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class TestLogin extends BaseUiTest {
 
-    private UserApiService_v1 userApiService_v1 = new UserApiService_v1();
-
-    @BeforeClass
-    public void setUp(){
-        RestAssured.baseURI = "http://142.93.90.9/";
-        Configuration.browser = "chrome";
-        Configuration.browserSize = "1366x768";
-    }
 
     @Test
     public void userCanLogin(){
+        //given
+        UserPayload userPayload = createNewUser();
 
-        UserPayload userPayload = new UserPayload()
-                .setUsername(RandomStringUtils.randomAlphanumeric(6))
-                .setPassword("12345")
-                .setEmail("user@gmail.com");
-        userApiService_v1.registerUser(userPayload);
+        //when
+        MainPage.open().loginAs(userPayload.getUsername(), userPayload.getPassword());
 
-        MainPage mainPage = open("http://142.93.90.9/", MainPage.class);
-        LoggedUserPage loggedUserPage = mainPage.loginAs(userPayload.getUsername(), userPayload.getPassword());
+//        MainPage mainPage = open("http://142.93.90.9/", MainPage.class);
+//        LoggedUserPage loggedUserPage = mainPage.loginAs(userPayload.getUsername(), userPayload.getPassword());
 
-
-        loggedUserPage.logoutBtn.shouldHave(Condition.text("Logout"));
+        //then
+        at(LoggedUserPage.class).logoutBtn().shouldHave(Condition.text("Logout"));
 
     }
+
+
+
 
     //29
     //33
     //41
+    //46
+    //52
+    //58
+    //1:04
+
 }

@@ -1,14 +1,9 @@
 package com.exemple.services;
 
 import com.exemple.assertions.AssertableResponse;
-import com.exemple.conditions.Conditions;
 import com.exemple.model.UserPayload;
 import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.RandomStringUtils;
-
-import static org.hamcrest.Matchers.isEmptyString;
-import static org.hamcrest.Matchers.not;
 
 @Slf4j
 public class UserApiService_v1 extends ApiService {

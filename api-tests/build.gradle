@@ -6,7 +6,7 @@ ext {
 }
 
 dependencies {
-    // compile used in all module or project
+  
     compile "com.fasterxml.jackson.core:jackson-databind:$jacksonDatabindVersion"
     compile "io.rest-assured:rest-assured:$restAssuredVersion"
     compile "io.qameta.allure:allure-rest-assured:$allureRestAssuredVersion"
@@ -17,7 +17,6 @@ dependencies {
     testCompile "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
     testCompile group: 'org.assertj', name: 'assertj-core', version: '3.11.1'
     compile group: 'org.aeonbits.owner', name: 'owner', version: '1.0.10'
-
    
     implementation 'com.github.javafaker:javafaker:0.17.2'
 
