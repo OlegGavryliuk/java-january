@@ -37,12 +37,5 @@ public class TestLogin extends BaseUiTest {
 
 
 
-    //29
-    //33
-    //41
-    //46
-    //52
-    //58
-    //1:04
 
 }
