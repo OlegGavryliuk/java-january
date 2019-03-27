@@ -14,16 +14,16 @@ public class SelenoidWebDriverProvider implements WebDriverProvider {
     @Override
     public WebDriver createDriver(DesiredCapabilities capabilities) {
         DesiredCapabilities browser = new DesiredCapabilities();
-        browser.setBrowserName("chrome");
-        browser.setVersion("71.0");
+        browser.setBrowserName("firefox");
+        browser.setVersion("64.0");
         browser.setCapability("enableVNC", true);
 
         try {
             RemoteWebDriver driver = new RemoteWebDriver(
-                    URI.create("http://172.28.27.17:4444/wd/hub").toURL(),
+                    URI.create("http://localhost:4444/wd/hub").toURL(),
                     browser
             );
-            driver.manage().window().setSize(new Dimension(1280, 1024));
+            driver.manage().window().setSize(new Dimension(1366, 768));
             return driver;
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);

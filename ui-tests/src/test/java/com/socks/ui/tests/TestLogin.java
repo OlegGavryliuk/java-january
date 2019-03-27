@@ -17,22 +17,22 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class TestLogin extends BaseUiTest {
 
-
-    @Test
-    public void userCanLogin(){
-        //given
-        UserPayload userPayload = createNewUser();
-
-        //when
-        MainPage.open().loginAs(userPayload.getUsername(), userPayload.getPassword());
-
-//        MainPage mainPage = open("http://142.93.90.9/", MainPage.class);
-//        LoggedUserPage loggedUserPage = mainPage.loginAs(userPayload.getUsername(), userPayload.getPassword());
-
-        //then
-        at(LoggedUserPage.class).logoutBtn().shouldHave(Condition.text("Logout"));
-
-    }
+//
+//    @Test
+//    public void userCanLogin(){
+//        //given
+//        UserPayload userPayload = createNewUser();
+//
+//        //when
+//        MainPage.open().loginAs(userPayload.getUsername(), userPayload.getPassword());
+//
+////        MainPage mainPage = open("http://142.93.90.9/", MainPage.class);
+////        LoggedUserPage loggedUserPage = mainPage.loginAs(userPayload.getUsername(), userPayload.getPassword());
+//
+//        //then
+//        at(LoggedUserPage.class).logoutBtn().shouldHave(Condition.text("Logout"));
+//
+//    }
 
 
 
